@@ -1,11 +1,13 @@
-"user server";
+"use server";
 
 import { auth } from "@clerk/nextjs/server";
 import Stripe from "stripe";
 
+// Utilizado para validar se o usuario esta logado, logo após isso ele validar as keys e redireciona o cliente
+// para a web do stripe para efetuar o pagamento por lá
 export const createStripeCheckout = async () => {
   const { userId } = await auth();
-
+  console.log("userId " + userId);
   if (!userId) {
     throw new Error("Unauthorized");
   }
