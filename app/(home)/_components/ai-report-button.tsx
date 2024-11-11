@@ -14,6 +14,7 @@ import { useState } from "react";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import Markdown from "react-markdown";
 import { Loader2Icon } from "lucide-react";
+
 interface AiReportButtonProps {
   month: string;
 }
@@ -35,7 +36,13 @@ const AiReportButton = ({ month }: AiReportButtonProps) => {
   };
 
   return (
-    <Dialog>
+    <Dialog
+      onOpenChange={(open) => {
+        if (!open) {
+          setReport(null);
+        }
+      }}
+    >
       <DialogTrigger asChild>
         <Button variant="ghost">Relatório AI</Button>
       </DialogTrigger>
